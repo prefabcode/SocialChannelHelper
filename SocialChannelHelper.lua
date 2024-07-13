@@ -27,11 +27,12 @@ local function ToggleWorldChatVisibility(show)
     showWorldChat = show
 end
 
--- Event handler for incoming chat messages
-local function OnChatMessage(event, message, sender, ...)
-    if not showWorldChat and select(9, ...) == GetChannelName(worldChatChannelName) then
+-- Chat filter function to block messages from WorldChat
+local function ChatFilter(self, event, message, sender, language, channelString, target, flags, channelNumber, channelName, ...)
+    if not showWorldChat and channelName == GetChannelName(worldChatChannelName) then
         return true -- Block the message
     end
+    return nil
 end
 
 -- OnUpdate handler for custom timer
@@ -49,19 +50,24 @@ local function SlashCommandHandler(msg)
     if command == "-wc" then
         if arg == "show" then
             ToggleWorldChatVisibility(true)
+            print("[" .. addonName .. "]: WorldChat messages are now visible.")
         elseif arg == "hide" then
             ToggleWorldChatVisibility(false)
+            print("[" .. addonName .. "]: WorldChat messages are now hidden.")
         end
     elseif command == "-a" then
         if arg == "on" then
             advertise = true
+            print("[" .. addonName .. "]: Advertisement is now ON.")
         elseif arg == "off" then
             advertise = false
+            print("[" .. addonName .. "]: Advertisement is now OFF.")
         end
     elseif command == "-rate" then
         local newRate = tonumber(arg)
         if newRate and newRate > 0 then
             SocialChannelHelperDB.advertisementInterval = newRate
+            print("[" .. addonName .. "]: Advertisement interval set to " .. newRate .. " seconds.")
         end
     elseif command == "-help" then
         print("[" .. addonName .. "] Commands:")
@@ -78,12 +84,14 @@ end
 -- Register events and slash commands
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("CHAT_MSG_CHANNEL")
-frame:SetScript("OnEvent", OnChatMessage)
 frame:SetScript("OnUpdate", OnUpdateHandler)
 
 SLASH_SocialChannelHelper1 = "/socialchannelhelper"
 SLASH_SocialChannelHelper2 = "/sch"
 SlashCmdList["SocialChannelHelper"] = SlashCommandHandler
+
+-- Add chat filter
+ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", ChatFilter)
 
 -- Print help message on login
 print("[" .. addonName .. "]: Type '/sch -help' for a list of commands.")
