@@ -70,7 +70,3 @@ To hide incoming WorldChat messages and set the advertisement interval to 10 min
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
-
----
-
-Feel free to customize the `README.md` as needed to better suit your preferences.
