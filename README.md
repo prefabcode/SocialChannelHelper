@@ -1,15 +1,19 @@
-Certainly! Here is a `README.md` file that explains what the extension does and how to use it:
-
 ### README.md
 
 # SocialChannelHelper
 
 ## Description
-**SocialChannelHelper** is a World of Warcraft addon designed to enhance social interaction on servers by promoting a new social chat channel and managing the visibility of the current WorldChat channel. The addon periodically advertises the new "Social" channel in the WorldChat to encourage players to join for casual conversations.
+**SocialChannelHelper** is a World of Warcraft addon targetting the 3.3.5a client designed to enhance social interaction on servers by promoting a new social chat channel and managing the visibility of the current WorldChat channel. The addon periodically advertises the new "Social" channel in the WorldChat to encourage players to join for casual conversations.
+
+Reason for this addon existing: The current implementation of WorldChat is filled with spam for raids, folks selling stuff. It is impossible to have a conversation with anyone in this channel, as your message will disappear shortly after you wrote it due to the volume of messages coming into this channel. 
+
+Solution: This addon will periodically send an advertisement message to WorldChat, promoting a new channel called "Social", where players can talk with one another without being spammed with LFG / LFR / Trade coming from WorldChat. 
+
+The addon features the option to block incoming messages from WorldChat (while simultaneously still sending messages to that channel, advertising the Social channel). With this, you can promote the Social channel without being spammed by incoming messages coming from WorldChat. 
 
 ## Features
-- **Advertisement**: Automatically sends an advertisement message to the WorldChat channel to promote the new "Social" channel.
-- **Visibility Control**: Allows users to hide or show messages from the WorldChat channel without leaving it.
+- **Advertisement**: Automatically sends an advertisement message to the WorldChat channel to promote the "Social" channel.
+- **Visibility Control**: Allows users to hide or show messages from the WorldChat channel without leaving it (allowing for continued periodic advertisement messages sent to this channel).
 - **User Commands**: Provides chat commands to control the addon's behavior, including setting the advertisement interval and toggling advertisement messages.
 
 ## Installation
