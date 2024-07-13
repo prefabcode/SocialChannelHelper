@@ -18,6 +18,9 @@ local timeSinceLastAdvert = 0
 local function AdvertiseSocialChannel()
     if advertise then
         SendChatMessage(advertisementMessage, "CHANNEL", nil, GetChannelName(worldChatChannelName))
+        if not showWorldChat then
+            print("Sent Social Channel advertisement message to WorldChat Channel.")
+        end
     end
     timeSinceLastAdvert = 0 -- Reset the timer
 end
