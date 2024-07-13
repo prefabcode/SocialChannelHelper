@@ -1,0 +1,9 @@
+## Interface: 30300
+## Title: SocialChannelHelper
+## Notes: Improve social interactions by promoting a new social channel and managing WorldChat visibility.
+## Author: YourName
+## Version: 1.1
+
+## SavedVariables: SocialChannelHelperDB
+
+SocialChannelHelper.lua
