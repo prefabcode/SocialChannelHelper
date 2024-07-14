@@ -11,13 +11,14 @@ if not SocialChannelHelperDB then
     SocialChannelHelperDB = {}
 end
 SocialChannelHelperDB.advertisementInterval = SocialChannelHelperDB.advertisementInterval or defaultAdvertisementInterval
+SocialChannelHelperDB.advertisementMessage = SocialChannelHelperDB.advertisementMessage or advertisementMessage
 
 local timeSinceLastAdvert = 0
 
 -- Function to send advertisement message to WorldChat
 local function AdvertiseSocialChannel()
     if advertise then
-        SendChatMessage(advertisementMessage, "CHANNEL", nil, GetChannelName(worldChatChannelName))
+        SendChatMessage(SocialChannelHelperDB.advertisementMessage, "CHANNEL", nil, GetChannelName(worldChatChannelName))
         if not showWorldChat then
             print("Sent Social Channel advertisement message to WorldChat Channel.")
         end
@@ -72,6 +73,13 @@ local function SlashCommandHandler(msg)
             SocialChannelHelperDB.advertisementInterval = newRate
             print("[" .. addonName .. "]: Advertisement interval set to " .. newRate .. " seconds.")
         end
+    elseif command == "-m" then
+        if arg and arg ~= "" then
+            SocialChannelHelperDB.advertisementMessage = arg
+            print("[" .. addonName .. "]: Advertisement message set to: " .. arg)
+        else
+            print("[" .. addonName .. "]: Invalid argument for '-m'. Please provide a message.")
+        end
     elseif command == "-help" then
         print("[" .. addonName .. "] Commands:")
         print("/sch -wc show : Show incoming WorldChat messages (ad for social channel will still be sent)")
@@ -79,6 +87,7 @@ local function SlashCommandHandler(msg)
         print("/sch -a on : Enable sending Social channel advertisement messages to WorldChat")
         print("/sch -a off : Disable sending Social channel advertisement messages to WorldChat")
         print("/sch -rate <seconds> : Set advertisement interval in seconds (be kind to others, do not spam)")
+        print("/sch -m <message> : Set the advertisement message to be sent to WorldChat")
     else
         print("[" .. addonName .. "]: Unknown command. Type '/sch -help' for help.")
     end
