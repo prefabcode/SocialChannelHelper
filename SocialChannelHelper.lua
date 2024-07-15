@@ -2,7 +2,7 @@ local addonName = "SocialChannelHelper"
 local socialChannelName = "Social"
 local worldChatChannelName = "WorldChat"
 local defaultAdvertisementInterval = 600 -- Default to 10 minutes in seconds
-local advertisementMessage = "Join the '" .. socialChannelName .. "' channel for social conversations! Type /join " .. socialChannelName .. " to participate."
+local advertisementMessage = "Tired of WTB/WTS/LFG/LFR spam and just want to chat with fellow frostmourne players? /join Social for friendly server-wide chat."
 local showWorldChat = true
 local advertise = true
 
@@ -20,7 +20,7 @@ local function AdvertiseSocialChannel()
     if advertise then
         SendChatMessage(SocialChannelHelperDB.advertisementMessage, "CHANNEL", nil, GetChannelName(worldChatChannelName))
         if not showWorldChat then
-            print("Sent Social Channel advertisement message to WorldChat Channel.")
+            print("[" .. addonName .. "]: Automated advertisement message sent to WorldChat channel.")
         end
     end
     timeSinceLastAdvert = 0 -- Reset the timer
