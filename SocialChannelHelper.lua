@@ -82,10 +82,10 @@ local function SlashCommandHandler(msg)
         end
     elseif command == "-help" then
         print("[" .. addonName .. "] Commands:")
-        print("/sch -wc show : Show incoming WorldChat messages (ad for social channel will still be sent)")
-        print("/sch -wc hide : Hide incoming WorldChat messages (ad for social channel will still be sent)")
-        print("/sch -a on : Enable sending Social channel advertisement messages to WorldChat")
-        print("/sch -a off : Disable sending Social channel advertisement messages to WorldChat")
+        print("/sch -wc show : Show incoming WorldChat messages (ad will still be sent to WorldChat)")
+        print("/sch -wc hide : Hide incoming WorldChat messages (ad will still be sent to WorldChat)")
+        print("/sch -a on : Enable sending automated advertisement messages to WorldChat")
+        print("/sch -a off : Disable sending automated advertisement messages to WorldChat")
         print("/sch -rate <seconds> : Set advertisement interval in seconds (be kind to others, do not spam)")
         print("/sch -m <message> : Set the advertisement message to be sent to WorldChat")
     else
